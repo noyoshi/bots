@@ -27,8 +27,13 @@ function getWeather(zip, country) {
 
       // Data is done
       res.on('end', () => {
-        console.log(body);
-        postMessage(body);
+        let response_data = JSON.parse(body);
+        let desc = response_data.weather[0].description;
+        let tempK = response_data.main.temp;
+        let tempF = Math.round((9/5) * (tempK - 273) + 32);
+        let report = "Weather in Palo Alto: " + desc + ", temperature is " + tempF.toString() + "°F";
+        console.log(report);
+        postMessage(report);
       });
 
     } else {
@@ -48,5 +53,5 @@ function getWeather(zip, country) {
   req.end(JSON.stringify(body));
 }
 
-console.log(getWeather(94301, 'us'));
+getWeather(94301, "us");
 exports.getWeather = getWeather
