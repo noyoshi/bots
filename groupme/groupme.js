@@ -8,6 +8,8 @@ const bodyParser = require('body-parser');
 const HTTPS = require('https');
 const app = express();
 
+const getWeather = require('./weather').getWeather
+
 // Message posting func
 var postMessage = require('./post_message').postMessage
 
@@ -30,6 +32,7 @@ app.post('/', function (req, res) {
     switch(cmd) {
       case "weather": 
         // Weather
+        getWeather(94301, 'us');
         break;
       default: 
         console.log("Invalid command!");
