@@ -39,4 +39,4 @@ function postMessage(msg) {
   botReq.end(JSON.stringify(body));
 }
 
-export.postMessage = postMessage
+exports.postMessage = postMessage
