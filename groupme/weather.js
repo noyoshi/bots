@@ -53,5 +53,5 @@ function getWeather(zip, country) {
   req.end(JSON.stringify(body));
 }
 
-getWeather(94301, "us");
+// getWeather(94301, "us");
 exports.getWeather = getWeather

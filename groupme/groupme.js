@@ -34,6 +34,9 @@ app.post('/', function (req, res) {
         // Weather
         getWeather(94301, 'us');
         break;
+      case "roast":
+        postMessage("Fuck you");
+        break;
       default: 
         console.log("Invalid command!");
     }
