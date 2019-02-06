@@ -7,8 +7,8 @@ var weatherToken = process.env.WEATHER_KEY;
 function getWeather(zip, country) {
   var options, req, data;
   let path = '/data/2.5/weather?zip=' + zip + ',' + country;
-  path = path + '&APPID=' + weatherToken;
-  console.log(path); 
+  path += '&APPID=' + weatherToken;
+
   options = {
     hostname: 'api.openweathermap.org',
     path: path, 
@@ -16,6 +16,8 @@ function getWeather(zip, country) {
   };
 
   var body = '';
+
+  // Send get request to weather API
   req = HTTPS.request(options, function(res) {
     if(res.statusCode == 202 || res.statusCode == 200) {
       // Valid response
