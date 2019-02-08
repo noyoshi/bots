@@ -38,9 +38,9 @@ var getRand = (roasts) => {
 }
 
 var getMovies = (movies) => {
-  var resp = "Movies in list: ";
-  movies.forEach((item) => {
-    resp += item + "\n";
+  var resp = "Movies in list: \n";
+  movies.forEach((item, i) => {
+    resp = resp + i + ": " + item + "\n";
   });
   return resp;
 }
