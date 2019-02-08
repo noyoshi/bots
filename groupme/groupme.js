@@ -40,7 +40,7 @@ var getRand = (roasts) => {
 var getMovies = (movies) => {
   var resp = "Movies in list: ";
   movies.forEach((item) => {
-    resp += item " ";
+    resp += item + " ";
   });
   return resp;
 }
@@ -53,7 +53,13 @@ var deleteMovie = (movies, oldMovie) => {
   movies.delete(oldMovie);
 }
 
-
+var parseMovie = (cmds) => {
+  var movieString = '';
+  cmds.forEach((item) => {
+    movieString += item + ' ';
+  });
+  return movieString;
+}
 
 // Use the body parser for each request
 app.use(bodyParser.json());
@@ -69,7 +75,7 @@ app.post('/', function (req, res) {
   console.log(req.body.text);
   let msg = req.body.text;
   if (msg.startsWith("!")) {
-    let sliced = msg.slice(1);
+    let slices = msg.slice(1);
     let cmds = slices.split(" ");
     let cmd = cmds[0];
     console.log(cmd);
@@ -101,16 +107,18 @@ app.post('/', function (req, res) {
 
       case "+movie":
         if (cmds.length > 1) {
-          addMovie(cmds[1]);
-          postMessage("Added movie: " + cmds[1]);
+          var movieName = parseMovie(cmds.slice(1));
+          addMovie(movieName);
+          postMessage("Added movie: " + movieName);
         } else {
           postMessage("Pls give movie to add");
         }
         break;
       case "-movie":
         if (cmds.length > 1) {
-          deleteMovie(cmds[1]);
-          postMessage("Removed movie: " + cmds[1]);
+          var movieName = parseMovie(cmds.slice(1));
+          deleteMovie(movieName);
+          postMessage("Removed movie: " + movieName);
         } else {
           postMessage("Pls give movie to delete");
         }
