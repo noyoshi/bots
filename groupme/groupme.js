@@ -15,6 +15,8 @@ var postMessage = require('./post_message').postMessage
 
 var quotes = ["I̬̮̕ ̜A̧M͓ͅ ̷S̼̺͓ͅKY͕͎N̨̬̤͕E͕̞̳͈̻Ṯ̬̹", "h̵̠̀è̸̯͝l̷̹̓̍ĺ̷̲͍͗o̴̰̅ ̷̰͔̒̚w̵͈̿̋o̴̠͐r̷͈̫̔̾l̶̖̈̑d̶͕̩́"]; 
 
+var movies = new Set([]);
+
 var roasts = {
   general: ["Do you even have airpods?", 
     "I thought I heard something? No? Jack?", 
@@ -34,6 +36,24 @@ var getRand = (roasts) => {
   
   return roasts[rand];
 }
+
+var getMovies = (movies) => {
+  var resp = "Movies in list: ";
+  movies.forEach((item) => {
+    resp += item " ";
+  });
+  return resp;
+}
+
+var addMovies = (movies, newMovie) => {
+  movies.add(newMovie);
+}
+
+var deleteMovie = (movies, oldMovie) => {
+  movies.delete(oldMovie);
+}
+
+
 
 // Use the body parser for each request
 app.use(bodyParser.json());
@@ -74,6 +94,26 @@ app.post('/', function (req, res) {
         break;
       case "cfoley":
         postMessage(getRand(chris));
+        break;
+      case "movies":
+        postMessage(getMovies(movies));
+        break;
+
+      case "+movie":
+        if (cmds.length > 1) {
+          addMovie(cmds[1]);
+          postMessage("Added movie: " + cmds[1]);
+        } else {
+          postMessage("Pls give movie to add");
+        }
+        break;
+      case "-movie":
+        if (cmds.length > 1) {
+          deleteMovie(cmds[1]);
+          postMessage("Removed movie: " + cmds[1]);
+        } else {
+          postMessage("Pls give movie to delete");
+        }
         break;
       default: 
         console.log("Invalid command!");
