@@ -40,7 +40,7 @@ var getRand = (roasts) => {
 var getMovies = (movies) => {
   var resp = "Movies in list: ";
   movies.forEach((item) => {
-    resp += item + " ";
+    resp += item + "\n";
   });
   return resp;
 }
