@@ -45,7 +45,7 @@ var getMovies = (movies) => {
   return resp;
 }
 
-var addMovies = (movies, newMovie) => {
+var addMovie = (movies, newMovie) => {
   movies.add(newMovie);
 }
 
