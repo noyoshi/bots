@@ -108,7 +108,7 @@ app.post('/', function (req, res) {
       case "+movie":
         if (cmds.length > 1) {
           var movieName = parseMovie(cmds.slice(1));
-          addMovie(movieName);
+          addMovie(movies, movieName);
           postMessage("Added movie: " + movieName);
         } else {
           postMessage("Pls give movie to add");
@@ -117,7 +117,7 @@ app.post('/', function (req, res) {
       case "-movie":
         if (cmds.length > 1) {
           var movieName = parseMovie(cmds.slice(1));
-          deleteMovie(movieName);
+          deleteMovie(movies, movieName);
           postMessage("Removed movie: " + movieName);
         } else {
           postMessage("Pls give movie to delete");
