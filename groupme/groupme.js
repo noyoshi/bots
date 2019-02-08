@@ -40,13 +40,16 @@ var getRand = (roasts) => {
 var getMovies = (movies) => {
   var resp = "Movies in list: \n";
   movies.forEach((item, i) => {
-    resp = resp + i + ": " + item + "\n";
+    resp += i + ": " + item + "\n";
   });
   return resp;
 }
 
 var addMovie = (movies, newMovie) => {
-  movies.add(newMovie);
+  var forbidden = new Set(['!', '\', '/']);
+  if (!forbidden.has(newMovie[0])){
+    movies.add(newMovie);
+  }
 }
 
 var deleteMovie = (movies, oldMovie) => {
